@@ -1,4 +1,5 @@
 from flask import Flask,request
+import requests
 import psycopg2 as pg2
 from psycopg2 import errors
 from psycopg2.errorcodes import UNIQUE_VIOLATION
@@ -68,5 +69,35 @@ def hello():
 
 
 @app.route("/cheminGet")
-def getTemp(slug,startDate,endDate):
-    return None
+def getTemp():
+
+    slug = request.args.get('slug')
+    select_query = """
+                SELECT lon,lat 
+                FROM locations
+                WHERE slug = %s """
+
+    cursor.execute(select_query, (slug,))
+
+    result = cursor.fetchone()
+    if result:
+        api_url = f"https://www.7timer.info/bin/astro.php?lon={result[0]}&lat={result[1]}" \
+                  f"&ac=0&unit=metric&output=json&tzshift=0"
+        try:
+            # Make a GET request to the API endpoint
+            response = requests.get(api_url)
+
+            # Check if the request was successful (status code 200)
+            if response.status_code == 200:
+                # Parse and use the response data (in JSON format)
+                data = response.json()
+                print("API response:", data)
+                return data
+            else:
+                # Print an error message for unsuccessful requests
+                print(f"Error: {response.status_code} - {response.text}")
+
+        except requests.RequestException as e:
+            print("Error during API request:", e)
+    else:
+        return 'There is no location stored in the databse for the given slug', 500
