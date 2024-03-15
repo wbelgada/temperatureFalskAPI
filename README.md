@@ -27,10 +27,11 @@ But if there is already an existing entry  we get the following response
 ![image](https://github.com/wbelgada/JuniorCaseAppTweak/assets/33086974/2998cecb-2ac2-4b5c-87d6-fd2e677a3c94)
 
 
-About the second endpoint, we use an url of the following type : hhtp://127.0.0.1:5000/getTemperatures?slug=blabli&Start_date=2018-02-01&End_date=2018-02-03
+About the second endpoint, we use an url of the following type : hhtp://127.0.0.1:5000/getTemperatures?slug=blabli&Start_date=2024-03-15&End_date=2024-03-20
 if there is data available for the resuqted time range we only send data for the days for which we have some data sotred in the databse:
 ![image](https://github.com/wbelgada/JuniorCaseAppTweak/assets/33086974/88e792a1-18e6-461e-98a9-df66062f5844)
 
+as u can see on the image we requested data from 15th of march 2024 to the 20th of match 2024 but we aonly got the data from the 15th to the 17th, this is because there only data for that time range in the databse.
 
 
 if there is no data available for the requested time range we get the following result :
