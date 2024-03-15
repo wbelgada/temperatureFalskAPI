@@ -24,17 +24,17 @@ But if there is already an existing entry, we receive the following response.
 ![image](https://github.com/wbelgada/JuniorCaseAppTweak/assets/33086974/2998cecb-2ac2-4b5c-87d6-fd2e677a3c94)
 
 
-About the second endpoint, we use a URL of the following type: \textbf{http://127.0.0.1:5000/getTemperatures?slug=blabli&Start_date=2024-03-15&End_date=2024-03-20}. If there is data available for the requested time range, we only send data for the days for which we have some data stored in the database.
+About the second endpoint, we use a URL of the following type: http://127.0.0.1:5000/getTemperatures?slug=paris&Start_date=2024-03-15&End_date=2024-03-20. If there is data available for the requested time range, we only send data for the days for which we have some data stored in the database.
 ![image](https://github.com/wbelgada/JuniorCaseAppTweak/assets/33086974/88e792a1-18e6-461e-98a9-df66062f5844)
 
-as u can see on the image we requested data from 15th of march 2024 to the 20th of match 2024 but we aonly got the data from the 15th to the 17th, this is because there only data for that time range in the databse.
+As you can see in the image, we requested data from the 15th of March 2024 to the 20th of March 2024, but we only received data from the 15th to the 17th. This is because there is only data available for that time range in the database.
 
 
-if there is no data available for the requested time range we get the following result :
+If there is no data available for the requested time range, we receive the following result:
 ![image](https://github.com/wbelgada/JuniorCaseAppTweak/assets/33086974/85ca810c-f2e9-42ff-89af-cac04f14a4b0)
 
 ### Bonus
-For the bonus I've implmented a simply script that every 3 days will get all the slug from ethe database wiith the cooridantes and start a serie of API request to the 7timer! API to get all the data we need to update the historical trak of temperature of all the locations already present in the database. The scipt that do that is in the dataCollector.py file.
+For the bonus, I've implemented a simple script that, every 3 days, retrieves all the slugs from the database along with their coordinates. It then initiates a series of API requests to the 7timer! API to obtain all the data needed to update the historical track of temperature for all the locations already present in the database. The script responsible for this is located in the dataCollector.py file.
 
 
 
