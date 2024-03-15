@@ -89,7 +89,7 @@ def transform_forecasts(*forecast_tuples):
     return json.dumps(result, indent=2)
 
 
-@app.route("/cheminGet")
+@app.route("/getTemperatures")
 def getTemp():
 
     slug = request.args.get('slug')
@@ -107,7 +107,7 @@ def getTemp():
         result = cursor.fetchone()
 
         print(result)
-        if result != (None,None):
+        if result != (None,None) and result != None:
             result = (result[0][1:-1],result[1][1:-1])
             print(result)
             result = transform_forecasts(*result)

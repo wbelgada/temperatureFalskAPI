@@ -23,9 +23,8 @@ try:
 except (Exception, pg2.Error) as error:
     print("Error while connecting to PostgreSQL:", error)
 
-def my_function(year,month,day):
+def dataCollection(year,month,day):
     print("Executing my function...")
-
     current_date = datetime.datetime(year, month, day)
 
     next_date1 = current_date + datetime.timedelta(days=1)
@@ -88,9 +87,9 @@ def my_function(year,month,day):
 
 
 
-schedule.every(3).days.at("00:00").do(my_function,datetime.datetime.now().year,
+schedule.every(3).days.at("00:00").do(dataCollection,datetime.datetime.now().year,
                     datetime.datetime.now().month,datetime.datetime.now().day)
-my_function(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day)
+dataCollection(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day)
 while True:
     schedule.run_pending()
     time.sleep(1)
